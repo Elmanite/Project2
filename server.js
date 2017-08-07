@@ -18,7 +18,7 @@ app.use(session({
   resave:false,
   saveUninitialized:false
 }));
-app.use('/sessions', sessionsController);
+app.use('/session', sessionsController);
 app.use('/users', userController);
 app.use('/plans', plansController);
 app.get('/', (req, res)=>{
@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost:27017/budgeteer');
 mongoose.connection.once('open', ()=>{
   console.log('mongo is connected');
 });
-port=process.env.PORT || 3000;
+port = process.env.PORT || 3000;
 console.log("----------------------");
 console.log('Server running on port: ' + port);
 console.log("----------------------------");
