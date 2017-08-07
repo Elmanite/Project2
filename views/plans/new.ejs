@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1>Create a Financial Plan</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/plans">Financial Plans Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<form action="/plans" method="post">
+				<select name="userId">
+                    <% for(let i = 0; i < users.length; i++) { %>
+                        <option value="<%=users[i]._id%>"><%=users[i].username%></option>
+                    <% } %>
+                </select><br/>
+				<input type="text" name="title" /><br/>
+				<textarea name="body"></textarea><br/>
+				<input type="submit" value="Save new plan"/>
+			</form>
+		</main>
+	</body>
+</html>

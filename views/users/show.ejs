@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1>Show Page for <%=users.username%></h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/users">Users Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section>
+				<h2>User Attributes:</h2>
+				<ul>
+					<li>Name: <%=users.username%></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Plans saved by This User:</h2>
+				<ul>
+					<% for(let i = 0; i < users.plan.length; i++){ %>
+						<li><a href="/users/<%=users.plan[i]._id%>"><%=users.plan[i].planName%></a></li>
+					<% } %>
+				</ul>
+			</section>
+			<section>
+				<a href="/users/<%=users._id%>/edit">Edit</a>
+			</section>
+            <section>
+				<form action="/users/<%=users._id%>?_method=DELETE" method="post">
+					<input type="submit" value="Delete User"/>
+				</form>
+			</section>
+		</main>
+	</body>
+</html>

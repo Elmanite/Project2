@@ -1,0 +1,13 @@
+<br>
+<form  action="/sessions/login" method="POST">
+   <input type="text" name="username" value="">
+   <input type="password" name="password" value="">
+   <button>Login</button>
+</form>
+
+
+<% if (message) { %>
+
+  <%= message %>
+
+<% } %>

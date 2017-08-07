@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1><%=plans.planName%></h1>
+			<small>by: <a href="/users/<%=users._id%>"><%=users.username%></a></small>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/plans">Financial Plans Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section>
+				<%=plans.body%>
+			</section>
+			<section>
+			    <form action="/plans/<%=plan._id%>?_method=DELETE" method="post">
+			        <input type="submit" value="Delete Financial Plan"/>
+			    </form>
+			</section>
+			<section>
+			    <a href="/plans/<%=plan._id%>/edit">Edit</a>
+			</section>
+		</main>
+	</body>
+</html>
