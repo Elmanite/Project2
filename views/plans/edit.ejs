@@ -21,15 +21,15 @@
 		<main>
 			<h2>Financial Plan Attributes:</h2>
 			<form action="/plans/<%=plan._id%>?_method=PUT" method="post">
-				<select name="UserId">
-                    <% for(let i = 0; i < users.length; i++) { %>
+				<select name="customerId">
+                    <% for(let i = 0; i < customers.length; i++) { %>
                         <option
-							value="<%=users[i]._id%>"
-							<% if(users[i]._id.toString() === planUser._id.toString()){ %>
+							value="<%=customers[i]._id%>"
+							<% if(customers[i]._id.toString() === planCustomer._id.toString()){ %>
 								selected
 							<% } %>
 							>
-							<%=users[i].name%>
+							<%=customers[i].name%>
 						</option>
                     <% } %>
                 </select><br/>

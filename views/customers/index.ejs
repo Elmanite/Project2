@@ -6,24 +6,24 @@
 	</head>
 	<body>
 		<header>
-			<h1>Users</h1>
+			<h1>Authors</h1>
 			<nav>
 				<ul>
 					<li>
 						<a href="/">Home</a>
 					</li>
 					<li>
-						<a href="/users/new">Create a new User</a>
+						<a href="/customers/new">Create a new Customer</a>
 					</li>
 				</ul>
 			</nav>
 		</header>
 		<main>
-			<h2>List of Users</h2>
+			<h2>List of Customers</h2>
 			<ul>
-				<% for(let i = 0; i < users.length; i++){ %>
+				<% for(let i = 0; i < customers.length; i++){ %>
 					<li>
-						<a href="/users/<%=users[i]._id%>"><%=users[i].username%></a>
+						<a href="/customers/<%=customers[i]._id%>"><%=customers[i].firstName%> <%=customsers[i].lastName%></a>
 					</li>
 				<% } %>
 			</ul>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<h1>Show Page for <%=customers.firstName%> <%=customers.lastName%></h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/customers">Customer Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section>
+				<h2>Customer Attributes:</h2>
+				<ul>
+					<li>First Name: <%=customers.firstName%></li>
+					<li>Last Name: <%=customers.lastName%></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Financial plans saved by this Customer:</h2>
+				<ul>
+					<% for(let i = 0; i < customers.plans.length; i++){ %>
+						<li><a href="/plans/<%=customers.plan[i]._id%>"><%=customers.plan[i].planName%></a></li>
+					<% } %>
+				</ul>
+			</section>
+			<section>
+				<a href="/customers/<%=customers._id%>/edit">Edit</a>
+			</section>
+            <section>
+				<form action="/customers/<%=customers._id%>?_method=DELETE" method="post">
+					<input type="submit" value="Delete Customer"/>
+				</form>
+			</section>
+		</main>
+	</body>
+</html>

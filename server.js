@@ -1,29 +1,31 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const User = require('./models/users.js');
-const Plan = require('./models/plans.js');
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
-const session = require ('express-session');
-const userController = require ('./controllers/users.js');
-const plansController = require ('./controllers/plans.js');
-const sessionsController = ('./controllers/session.js');
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/budgeteer';
+const express         = require('express');
+const app             = express();
+const mongoose        = require('mongoose');
+const bodyParser      = require('body-parser');
+const methodOverride  = require('method-override');
+const session         = require ('express-session');
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
+
 app.use(session({
-  secret:"random string",
-  resave:false,
-  saveUninitialized:false
+  secret: "this is a random string secret",
+  resave: false,
+  saveUninitialized: false
+
 }));
-app.use('/session', sessionsController);
-app.use('/users', userController);
+
+const customersController = require ('./controllers/customers.js');
+app.use('/customers', customersController);
+const plansController = require ('./controllers/plans.js');
 app.use('/plans', plansController);
+const sessionsController = ('./controllers/session.js');
+// app.use('/session', sessionsController);
+
 app.get('/', (req, res)=>{
   res.render('index.ejs');
 });
+const mongoUri        = process.env.MONGODB_URI || 'mongodb://localhost:27017/budgeteer';
 mongoose.connect(mongoUri);
 mongoose.connect('mongodb://localhost:27017/budgeteer');
 mongoose.connection.once('open', ()=>{
