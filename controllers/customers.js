@@ -34,8 +34,8 @@ router.delete('/:id', (req, res)=>{
 
 	Customer.findByIdAndRemove(req.params.id, (err, foundCustomer)=>{
 		const planIds = [];
-		for (let i = 0; i < foundCustomer.plan.length; i++) {
-			planIds.push(foundCustomer.plan[i]._id);
+		for (let i = 0; i < foundCustomer.plans.length; i++) {
+			planIds.push(foundCustomer.plans[i]._id);
 		}
 		Plan.remove(
 			{

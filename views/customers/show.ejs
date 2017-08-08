@@ -30,7 +30,7 @@
 				<h2>Financial plans saved by this Customer:</h2>
 				<ul>
 					<% for(let i = 0; i < customers.plans.length; i++){ %>
-						<li><a href="/plans/<%=customers.plan[i]._id%>"><%=customers.plan[i].planName%></a></li>
+						<li><a href="/plans/<%=customers.plans[i]._id%>"><%=customers.plans[i].planName%></a></li>
 					<% } %>
 				</ul>
 			</section>

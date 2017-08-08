@@ -20,9 +20,9 @@
 		</header>
 		<main>
 			<form action="/plans" method="post">
-				<select name="userId">
+				<select name="customerId">
                     <% for(let i = 0; i < customers.length; i++) { %>
-                        <option value="<%=customers[i]._id%>"><%=customers[i].username%></option>
+                        <option value="<%=customers[i]._id%>"><%=customers[i].firstName%> <%=customers[i].lastName%></option>
                     <% } %>
                 </select><br/>
 				<input type="text" name="title" /><br/>

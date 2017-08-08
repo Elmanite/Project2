@@ -6,7 +6,7 @@ const CustomerSchema = new mongoose.Schema({
  mailingAddress: String,
  city: String,
  State: String,
- plan:[Plan.schema]
+ plans:[Plan.schema]
 });
 const Customer = mongoose.model('Customer', CustomerSchema);
 module.exports = Customer;
