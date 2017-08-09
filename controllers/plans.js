@@ -39,11 +39,11 @@ router.get('/:id', (req, res)=>{
   Plan.findById(req.params.id, (err, foundPlan)=>{
     Customer.findOne({'plans._id': req.params.id},
     (err, foundCustomer)=>{
-      console.log(foundCustomer, foundPlan);
       res.render('plans/show.ejs',{
         customers:foundCustomer,
         plans:foundPlan
       });
+      console.log('this is the data getting to the show page', foundPlan.expenses[0].expenseAmount);
     });
   });
 });

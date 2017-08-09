@@ -7,7 +7,7 @@
 	<body>
 		<header>
 			<h1><%=plans.planName%></h1>
-			<small>by: <a href="/customers/<%=customers._id%>"><%=customers.firstName%> <%=customers.lastName%></a></small>
+			<small>customer: <a href="/customers/<%=customers._id%>"><%=customers.firstName%> <%=customers.lastName%></a></small>
 			<nav>
 				<ul>
 					<li>
@@ -22,8 +22,10 @@
 		<main>
 			<section>
 				Plan Name: <%=plans.planName%><br/>
-				Expense category: <%=plans.expenses[0].expenseCategory%><br/>
-				Expense amount: <%=plans.expenses.expenseAmount%><br/>
+				<%for(let i = 0; i < plans.expenses.length; i++){%>
+					Expense Amount: <%=plans.expenses[i].expenseAmount%><br/>
+					Expense Category: <%=plans.expenses[i].expenseCategory%><br/>
+				<%}%>
 			</section>
 			<section>
 			    <form action="/plans/<%=plans._id%>?_method=DELETE" method="post">

@@ -25,16 +25,16 @@ const sessionsController = ('./controllers/session.js');
 app.get('/', (req, res)=>{
   res.render('index.ejs');
 });
-const mongoUri        = process.env.MONGODB_URI || 'mongodb://localhost:27017/budgeteer';
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/budgeteer';
 mongoose.connect(mongoUri);
 mongoose.connect('mongodb://localhost:27017/budgeteer');
 mongoose.connection.once('open', ()=>{
   console.log('mongo is connected');
 });
-port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 console.log("----------------------");
 console.log('Server running on port: ' + port);
 console.log("----------------------------");
-app.listen(3001, ()=>{
+app.listen(port, ()=>{
   console.log('server is listening');
 });
