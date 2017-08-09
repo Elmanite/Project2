@@ -5,9 +5,9 @@ const bodyParser      = require('body-parser');
 const methodOverride  = require('method-override');
 const session         = require ('express-session');
 
+app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static('public'));
 app.use(session({
   secret: "this is a random string secret",
   resave: false,
@@ -35,6 +35,6 @@ const port = process.env.PORT || 3000;
 console.log("----------------------");
 console.log('Server running on port: ' + port);
 console.log("----------------------------");
-app.listen(port, ()=>{
+app.listen(3001||port, ()=>{
   console.log('server is listening');
 });
