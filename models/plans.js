@@ -3,8 +3,8 @@ const Customer = require('./customers.js');
 const PlanSchema = new mongoose.Schema({
   planName: String,
   expenses:[
-    {expenseAmount: Number},
-    {expenseCategory: String}
+    {expenseAmount: Number,
+    expenseCategory: String}
   ],
   expenseTotal: Number
 });

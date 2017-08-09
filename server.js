@@ -7,7 +7,7 @@ const session         = require ('express-session');
 
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(express.static('public'));
 app.use(session({
   secret: "this is a random string secret",
   resave: false,

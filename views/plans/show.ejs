@@ -21,15 +21,17 @@
 		</header>
 		<main>
 			<section>
-				<%=plans.body%>
+				Plan Name: <%=plans.planName%><br/>
+				Expense category: <%=plans.expenses[0].expenseCategory%><br/>
+				Expense amount: <%=plans.expenses.expenseAmount%><br/>
 			</section>
 			<section>
-			    <form action="/plans/<%=plan._id%>?_method=DELETE" method="post">
+			    <form action="/plans/<%=plans._id%>?_method=DELETE" method="post">
 			        <input type="submit" value="Delete Financial Plan"/>
 			    </form>
 			</section>
 			<section>
-			    <a href="/plans/<%=plan._id%>/edit">Edit</a>
+			    <a href="/plans/<%=plans._id%>/edit">Edit</a>
 			</section>
 		</main>
 	</body>

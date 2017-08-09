@@ -25,8 +25,10 @@
                         <option value="<%=customers[i]._id%>"><%=customers[i].firstName%> <%=customers[i].lastName%></option>
                     <% } %>
                 </select><br/>
-				<input type="text" name="title" /><br/>
-				<textarea name="body"></textarea><br/>
+				Plan Name: <input type="text" name="planName" /><br/>
+				Expense Category: <input type="text" name="expenses.expenseCategory" /><br/>
+				Expense Amount: <input type="text" name="expenses.expenseAmount" /><br/>
+				<!-- expenses: <input type="text" name="expenses" /><br/> -->
 				<input type="submit" value="Save new plan"/>
 			</form>
 		</main>

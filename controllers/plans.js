@@ -22,13 +22,15 @@ router.get('/new', (req, res)=>{
   });//close customer find
 });//close router get
 router.post('/', (req, res)=>{
+  console.log('Creating a new financial plan -----------------------------------------');
   Customer.findById(req.body.customerId, (err, foundCustomer)=>{
     Plan.create(req.body, (err, createdPlan)=>{
-      console.log(foundCustomer);
-      console.log(foundCustomer.plans);
-      foundCustomer.plans.push(createdPlan);
-      foundCustomer.save((err, data)=>{
-        res.redirect('/plans');
+      createdPlan.expenses.push({expenseCategory:req.body['expenses.expenseCategory'], expenseAmount:req.body['expenses.expenseAmount']});
+      createdPlan.save((err, data)=>{
+        foundCustomer.plans.push(createdPlan);
+        foundCustomer.save((err, data)=>{
+          res.redirect('/plans');
+        });
       });
     });
   });
@@ -37,7 +39,8 @@ router.get('/:id', (req, res)=>{
   Plan.findById(req.params.id, (err, foundPlan)=>{
     Customer.findOne({'plans._id': req.params.id},
     (err, foundCustomer)=>{
-      res.render('/plans/show.ejs',{
+      console.log(foundCustomer, foundPlan);
+      res.render('plans/show.ejs',{
         customers:foundCustomer,
         plans:foundPlan
       });
