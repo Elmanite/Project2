@@ -25,7 +25,7 @@ router.post('/', (req, res)=>{
   console.log('Creating a new financial plan -----------------------------------------');
   Customer.findById(req.body.customerId, (err, foundCustomer)=>{
     Plan.create(req.body, (err, createdPlan)=>{
-      createdPlan.expenses.push({expenseCategory:req.body['expenses.expenseCategory'], expenseAmount:req.body['expenses.expenseAmount']});
+      createdPlan.expenses.push({expenseCategory1:req.body['expenses.expenseCategory1'], expenseAmount1:req.body['expenses.expenseAmount1'],expenseCategory2:req.body['expenses.expenseCategory2'],expenseAmount2:req.body['expenses.expenseAmount2']});
       createdPlan.save((err, data)=>{
         foundCustomer.plans.push(createdPlan);
         foundCustomer.save((err, data)=>{
@@ -43,7 +43,6 @@ router.get('/:id', (req, res)=>{
         customers:foundCustomer,
         plans:foundPlan
       });
-      console.log('this is the data getting to the show page', foundPlan.expenses[0].expenseAmount);
     });
   });
 });
@@ -73,13 +72,14 @@ router.get('/:id/edit', (req, res)=>{
 
 router.put('/:id', (req, res)=>{
   Plan.findByIdAndUpdate(req.params.id, req.body, {new : true}, (err, updatedPlan)=>{
+    console.log('this is the updated plan--------------------------------', updatedPlan);
     Customer.findOne({'plans._id':req.params.id},
     (err, foundCustomer)=>{
       if(foundCustomer._id.toString() !== req.body.customerId){
         foundCustomer.plans.id(req.params.id).remove();
         foundCustomer.save((err, savedFoundCustomer)=>{
           Customer.findById(req.body.customerId, (err, newCustomer)=>{
-            newCustomer.plans.push(updatedPlan);
+            newCustomer.plans.expenses.push({expenseCategory1:req.body['expenses.expenseCategory1'], expenseAmount1:req.body['expenses.expenseAmount1'],expenseCategory2:req.body['expenses.expenseCategory2'],expenseAmount2:req.body['expenses.expenseAmount2']});
             newCustomer.save((err, savedNewCustomer)=>{
               res.redirect('/plans/'+req.params.id);
             });
@@ -87,7 +87,7 @@ router.put('/:id', (req, res)=>{
         });
       }else{
         foundCustomer.plans.id(req.params.id).remove();
-        foundCustomer.plans.push(updatedPlan);
+        foundCustomer.plans.expenses.push(updatedPlan);
         foundCustomer.save((err, data)=>{
           res.redirect('/plans/'+req.params.id);
         });

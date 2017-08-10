@@ -8,20 +8,11 @@
 	</head>
 	<body>
 		<header>
-			<h1>Authors</h1>
+			<h1>Customer Index</h1>
 			<nav>
-				<ul>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/customers/new">Create a new Customer</a>
-					</li>
-				</ul>
 			</nav>
 		</header>
 		<main>
-			<h2>List of Customers</h2>
 			<ul>
 				<% for(let i = 0; i < customers.length; i++){ %>
 					<li>
@@ -30,6 +21,6 @@
 				<% } %>
 			</ul>
 		</main>
-		  <%include ../partials/footer.ejs%>
+	<%include ../partials/footer.ejs%>
 	</body>
 </html>

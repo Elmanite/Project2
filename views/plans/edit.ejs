@@ -12,9 +12,6 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
 						<a href="/plans">Financial plans Index</a>
 					</li>
 				</ul>
@@ -24,21 +21,24 @@
 			<h2>Financial Plan Attributes:</h2>
 			<form action="/plans/<%=plans._id%>?_method=PUT" method="post">
 				<select name="customerId">
-                    <% for(let i = 0; i < customers.length; i++) { %>
-                        <option
-							value="<%=customers[i]._id%>"
-							<% if(customers[i]._id.toString() === planCustomer._id.toString()){ %>
-								selected
-							<% } %>
-							>
-							<%=customers[i].firstName%> <%=customers[i].lastName%>
-						</option>
-                    <% } %>
+            <% for(let i = 0; i < customers.length; i++) { %>
+                <option value="<%=customers[i]._id%>"
+									<% if(customers[i]._id.toString() === planCustomer._id.toString()){ %>
+										selected
+										<% } %>
+								><!-- close option -->
+								<%=customers[i].firstName%> <%=customers[i].lastName%>
+								</option>
+            <% } %>
                 </select><br/>
 				Plan Name: <input type="text" name="planName" value="<%=plans.planName%>"/><br/>
-				Expense category: <input type="text" name="expenses.expenseCategory"/><br/>
+				Expense category: <input type="text" name="expenses.expenseCategory1"/><br/>
+				Expense amount: <input type="number" name="expenses.expenseAmount1"/><br/>
+				Expense Category: <input type="text" name="expenses.expenseCategory2" /><br/>
+				Expense Amount: <input type="number" name="expenses.expenseAmount2" /><br/>
 				<input type="submit" value="Update Financial Plan"/>
 			</form>
 		</main>
+			  <%include ../partials/footer.ejs%>
 	</body>
 </html>

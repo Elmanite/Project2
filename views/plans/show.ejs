@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title></title>
 		<%include ../partials/head.ejs%>
 		<%include ../partials/nav.ejs%>
 	</head>
@@ -13,9 +11,6 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
 						<a href="/plans">Financial Plans Index</a>
 					</li>
 				</ul>
@@ -25,8 +20,10 @@
 			<section>
 				Plan Name: <%=plans.planName%><br/>
 				<%for(let i = 0; i < plans.expenses.length; i++){%>
-					Expense Amount: <%=plans.expenses[i].expenseAmount%><br/>
-					Expense Category: <%=plans.expenses[i].expenseCategory%><br/>
+					Expense Amount: <%=plans.expenses[i].expenseAmount1%><br/>
+					Expense Category: <%=plans.expenses[i].expenseCategory1%><br/>
+					Expense Amount: <%=plans.expenses[i].expenseAmount2%><br/>
+					Expense Category: <%=plans.expenses[i].expenseCategory2%><br/>
 				<%}%>
 			</section>
 			<section>
@@ -38,6 +35,6 @@
 			    <a href="/plans/<%=plans._id%>/edit">Edit</a>
 			</section>
 		</main>
-			  <%include ../partials/footer.ejs%>
+		<%include ../partials/footer.ejs%>
 	</body>
 </html>
