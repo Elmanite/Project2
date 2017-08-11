@@ -18,13 +18,12 @@
 		</header>
 		<main>
 			<section>
-				Plan Name: <%=plans.planName%><br/>
-				<%for(let i = 0; i < plans.expenses.length; i++){%>
-					Expense Amount: <%=plans.expenses[i].expenseAmount1%><br/>
-					Expense Category: <%=plans.expenses[i].expenseCategory1%><br/>
-					Expense Amount: <%=plans.expenses[i].expenseAmount2%><br/>
-					Expense Category: <%=plans.expenses[i].expenseCategory2%><br/>
-				<%}%>
+					Plan Name: <%=plans.planName%><br/>
+					Expense Amount: <%=plans.expenseAmount1%><br/>
+					Expense Category: <%=plans.expenseCategory1%><br/>
+					Expense Amount: <%=plans.expenseAmount2%><br/>
+					Expense Category: <%=plans.expenseCategory2%><br/>
+					Expense Total: <%=plans.expenseTotal%><br/>
 			</section>
 			<section>
 			    <form action="/plans/<%=plans._id%>?_method=DELETE" method="post">

@@ -22,15 +22,13 @@ router.get('/new', (req, res)=>{
   });//close customer find
 });//close router get
 router.post('/', (req, res)=>{
-  console.log('Creating a new financial plan -----------------------------------------');
   Customer.findById(req.body.customerId, (err, foundCustomer)=>{
     Plan.create(req.body, (err, createdPlan)=>{
-      createdPlan.expenses.push({expenseCategory1:req.body['expenses.expenseCategory1'], expenseAmount1:req.body['expenses.expenseAmount1'],expenseCategory2:req.body['expenses.expenseCategory2'],expenseAmount2:req.body['expenses.expenseAmount2']});
-      createdPlan.save((err, data)=>{
+      createdPlan.expenseTotal=createdPlan.expenseAmount1+createdPlan.expenseAmount2;
+      console.log(createdPlan);
         foundCustomer.plans.push(createdPlan);
         foundCustomer.save((err, data)=>{
           res.redirect('/plans');
-        });
       });
     });
   });
@@ -79,7 +77,7 @@ router.put('/:id', (req, res)=>{
         foundCustomer.plans.id(req.params.id).remove();
         foundCustomer.save((err, savedFoundCustomer)=>{
           Customer.findById(req.body.customerId, (err, newCustomer)=>{
-            newCustomer.plans.expenses.push({expenseCategory1:req.body['expenses.expenseCategory1'], expenseAmount1:req.body['expenses.expenseAmount1'],expenseCategory2:req.body['expenses.expenseCategory2'],expenseAmount2:req.body['expenses.expenseAmount2']});
+            newCustomer.plans.push(updatedPlan);
             newCustomer.save((err, savedNewCustomer)=>{
               res.redirect('/plans/'+req.params.id);
             });
@@ -87,7 +85,7 @@ router.put('/:id', (req, res)=>{
         });
       }else{
         foundCustomer.plans.id(req.params.id).remove();
-        foundCustomer.plans.expenses.push(updatedPlan);
+        foundCustomer.plans.push(updatedPlan);
         foundCustomer.save((err, data)=>{
           res.redirect('/plans/'+req.params.id);
         });
